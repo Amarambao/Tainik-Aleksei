@@ -80,6 +80,24 @@ namespace Homework__3._2
             }
             Console.WriteLine();
             dictionary.Clear();
+            
+            Console.WriteLine();
+
+            List<List<int>> ListList = new List<List<int>>()
+            {
+                new List<int>(){1, 2, 3, 4, 5},
+                new List<int>(){6, 7, 8, 9},
+                new List<int>(){10, 11, 12},
+                new List<int>(){13, 14}
+            };
+            foreach (var List in ListList)
+            {
+                foreach (int i in List)
+                {
+                    Console.Write($"{i.ToString()} ");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
