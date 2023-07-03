@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Homework__4_1
+namespace Homework__4._1
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            string FromConsole = Console.ReadLine();
+
             string RemoveSymbols(string str)
             {
                 StringBuilder sb = new StringBuilder();
@@ -44,7 +46,8 @@ namespace Homework__4_1
                     if (i == str.Length - 1)
                     {
                         sb.Append(str[i]);
-                    } else if (str[i] != str[i + 1])
+                    }
+                    else if (str[i] != str[i + 1])
                     {
                         sb.Append(str[i]);
                     }
@@ -55,14 +58,9 @@ namespace Homework__4_1
             void instuct(StringMethod1 parameter1, string str2)
             {
                 parameter1.Invoke(str2);
-            } 
+            }
 
             public delegate string StringMethod1(string str);
-
-            string FromConsole = Console.ReadLine();
-            Console.WriteLine(AddSymbols(FromConsole));
-            Console.WriteLine(RemoveSymbols(FromConsole));
-            Console.WriteLine(RemoveDuplicateSymbols(FromConsole));
         }
     }
 }

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные с этой сборкой.
-[assembly: AssemblyTitle("Homework №4_1")]
+[assembly: AssemblyTitle("Homework №3.3e")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("HP")]
-[assembly: AssemblyProduct("Homework №4_1")]
+[assembly: AssemblyProduct("Homework №3.3e")]
 [assembly: AssemblyCopyright("Copyright © HP 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID представляет идентификатор typelib, если этот проект доступен из модели COM
-[assembly: Guid("a80f9bc0-39c7-4d84-b58c-2ca06a57815b")]
+[assembly: Guid("ddda4bed-7dfa-4e80-b8f3-6129346cab16")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //

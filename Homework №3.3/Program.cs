@@ -21,7 +21,8 @@ namespace Homework__3._3
             string[] MonthsNumbers = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
 
             //последовательность месяцев с длиной строки равной n
-            int MonthsLength = Convert.ToInt32(Console.ReadLine());
+            //int MonthsLength = Convert.ToInt32(Console.ReadLine());
+            int MonthsLength = 6;
 
             var SelectedMonths1 = from m in Months
                                  where m.Length == MonthsLength 
@@ -94,17 +95,17 @@ namespace Homework__3._3
             Console.WriteLine("Есть группы с количеством элементов >= 3 - " + SelectedMonths7);
 
             // я не понимаю почему это не работает если MonthsNumbers - int
-            /* var JoinMonths = Months.Join(MonthsNumbers,
-                                         Month => Month.Length >= 1,
-                                         MonthsNumber => MonthsNumber.Length > 1,
-                                         (m1, m2) => m1 + " " + m2
-                                         );
+            // выводит System.String[] вместо чисел
+            var JoinMonths = Months.GroupJoin( MonthsNumbers,
+                                               Month => Month,
+                                               MonthsNumber => MonthsNumber,
+                                               (m1, m2) => m2 + " " + m1
+                                             );
             foreach (var m in JoinMonths)
             {
                 Console.WriteLine(m);
             }
             Console.WriteLine();
-            */
         }
     }
 }
