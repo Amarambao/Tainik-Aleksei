@@ -149,7 +149,11 @@ namespace Homework__4._1
             };
             string StrLengthLess21 = "qaz   wsx";
             Console.WriteLine(AddOrRemove(StrLengthLess21));
+<<<<<<< HEAD
             //RemoveSpaces(StrLengthLess21);
+=======
+            RemoveSpaces(StrLengthLess21);
+>>>>>>> origin/main
             Console.WriteLine(StrLengthLess21);
         }
     }
