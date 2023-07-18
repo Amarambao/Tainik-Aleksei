@@ -152,6 +152,7 @@ namespace Homework__4._1
                 Console.WriteLine(LongerThan21(str));
                 Console.WriteLine(AddOrRemove(str));
             };
+
             string StrLengthLess21 = "qazwsx";
             string StrLengthGreater21 = "qwertyuiopasdfghjklzxcvbnm";
             
