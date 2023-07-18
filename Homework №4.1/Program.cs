@@ -149,7 +149,7 @@ namespace Homework__4._1
 
             Action<string> WriteString = delegate (string str)
             {
-                Console.WriteLine(LongerThan21(str));
+                Console.WriteLine("String longer than 21 - " + LongerThan21(str));
                 Console.WriteLine(AddOrRemove(str));
             };
 
