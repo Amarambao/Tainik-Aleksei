@@ -160,7 +160,7 @@ namespace Homework__4._1
             WriteString(StrLengthLess21);
             WriteString(StrLengthGreater21);
 =======
-            public delegate string StringMethod1(string str);
+            
 >>>>>>> main
         }
     }
