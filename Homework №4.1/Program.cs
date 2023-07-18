@@ -99,6 +99,7 @@ namespace Homework__4._1
                 return result5;
             }
 
+<<<<<<< HEAD
             string Instruction2(StringMethod1 param1, StringMethod1 param2, StringMethod1 param3, StringMethod1 param4, string str)
             {
                 string result1 = param1.Invoke(str);
@@ -158,6 +159,9 @@ namespace Homework__4._1
             
             WriteString(StrLengthLess21);
             WriteString(StrLengthGreater21);
+=======
+            public delegate string StringMethod1(string str);
+>>>>>>> main
         }
     }
 }
