@@ -99,62 +99,7 @@ namespace Homework__4._1
                 return result5;
             }
 
-            //string ModifiedString2 = Instruction1(AddSymbols, StringToUpper, RemoveDuplicateSymbols, RemoveSymbols, StringReverse, OriginalString);
-            //Console.WriteLine(ModifiedString2);
-
-            //Action<string> RemoveSpaces = delegate (string str)
-            //{
-            //    for (int i = 0; i < str.Length; i++)
-            //    {
-            //        if (str[i] == ' ')
-            //        {
-            //            str[i] = '.';
-            //        }
-            //    }
-            //};
-
-            Predicate<string> LongerThan21 = delegate (string str)
-                {
-                      return str.Length > 21;
-                };
-
-            Func <string, string> AddOrRemove = delegate (string str)
-            {
-                if (LongerThan21(str) == true)
-                {
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < str.Length; i++)
-                    {
-                        char c = str[i];
-                        sb.Append(c);
-                    }
-                    return sb.ToString();
-                } 
-                else
-                {
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < str.Length; i++)
-                    {
-                        char c = str[i];
-                        sb.Append(c);
-                    }
-                    while (sb.Length < 21)
-                    {
-                        int j = str.Length - 1;
-                        sb.Append('A');
-                        j++;
-                    }
-                    return sb.ToString();
-                }
-            };
-            string StrLengthLess21 = "qaz   wsx";
-            Console.WriteLine(AddOrRemove(StrLengthLess21));
-<<<<<<< HEAD
-            //RemoveSpaces(StrLengthLess21);
-=======
-            RemoveSpaces(StrLengthLess21);
->>>>>>> origin/main
-            Console.WriteLine(StrLengthLess21);
+            public delegate string StringMethod1(string str);
         }
     }
 }
