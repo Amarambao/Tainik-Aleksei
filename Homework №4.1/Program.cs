@@ -13,9 +13,6 @@ namespace Homework__4._1
 
         static void Main(string[] args)
         {
-            //string OriginalString = Console.ReadLine();
-            string OriginalString = "qqwweerrttyyuuiioopp   {{::''||<<>>??}}   aaAAssSSddDDffFFggGGhhHHjjJJkkKKllLL   [[;;..//'']]   ZZZXXXCCCVVVBBBNNNMMM";
-            
             string RemoveSymbols(string str)
             {
                 StringBuilder sb = new StringBuilder();
@@ -39,7 +36,7 @@ namespace Homework__4._1
                 return sb.ToString();
             }
             
-            string RemoveDuplicateSymbols(string str)
+            string RemoveDuplicateSymbols(string str) // съедает последнюю букву
             {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < str.Length - 1; i++)
@@ -86,6 +83,9 @@ namespace Homework__4._1
                 return sb.ToString();
             }
 
+            //string OriginalString = Console.ReadLine();
+            string OriginalString = "qqwweerrttyyuuiioopp   {{::''||<<>>??}}   aaAAssSSddDDffFFggGGhhHHjjJJkkKKllLL   [[;;..//'']]   ZZZXXXCCCVVVBBBNNNMMM";
+
             string ModifiedString1 = StringReverse(RemoveDuplicateSymbols(StringToUpper(RemoveSymbols(OriginalString))));
             Console.WriteLine(ModifiedString1);
 
@@ -99,19 +99,20 @@ namespace Homework__4._1
                 return result5;
             }
 
+            string Instruction2(StringMethod1 param1, StringMethod1 param2, StringMethod1 param3, StringMethod1 param4, string str)
+            {
+                string result1 = param1.Invoke(str);
+                string result2 = param2.Invoke(result1);
+                string result3 = param3.Invoke(result2);
+                string result4 = param4.Invoke(result3);
+                return result4;
+            }
+
             //string ModifiedString2 = Instruction1(AddSymbols, StringToUpper, RemoveDuplicateSymbols, RemoveSymbols, StringReverse, OriginalString);
             //Console.WriteLine(ModifiedString2);
 
-            //Action<string> RemoveSpaces = delegate (string str)
-            //{
-            //    for (int i = 0; i < str.Length; i++)
-            //    {
-            //        if (str[i] == ' ')
-            //        {
-            //            str[i] = '.';
-            //        }
-            //    }
-            //};
+            string ModifiedString3 = Instruction2(AddSymbols, StringToUpper, RemoveDuplicateSymbols, StringReverse, OriginalString);
+            Console.WriteLine(ModifiedString3);
 
             Predicate<string> LongerThan21 = delegate (string str)
                 {
@@ -123,7 +124,7 @@ namespace Homework__4._1
                 if (LongerThan21(str) == true)
                 {
                     StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < str.Length; i++)
+                    for (int i = 0; i < 21; i++)
                     {
                         char c = str[i];
                         sb.Append(c);
@@ -140,17 +141,22 @@ namespace Homework__4._1
                     }
                     while (sb.Length < 21)
                     {
-                        int j = str.Length - 1;
                         sb.Append('A');
-                        j++;
                     }
                     return sb.ToString();
                 }
             };
-            string StrLengthLess21 = "qaz   wsx";
-            Console.WriteLine(AddOrRemove(StrLengthLess21));
-            //RemoveSpaces(StrLengthLess21);
-            Console.WriteLine(StrLengthLess21);
+
+            Action<string> WriteString = delegate (string str)
+            {
+                Console.WriteLine(LongerThan21(str));
+                Console.WriteLine(AddOrRemove(str));
+            };
+            string StrLengthLess21 = "qazwsx";
+            string StrLengthGreater21 = "qwertyuiopasdfghjklzxcvbnm";
+            
+            WriteString(StrLengthLess21);
+            WriteString(StrLengthGreater21);
         }
     }
 }
