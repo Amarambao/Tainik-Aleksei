@@ -121,7 +121,7 @@ namespace Homework__4._1
 
             Func <string, string> AddOrRemove = delegate (string str)
             {
-                if (LongerThan21(str) == true)
+                if (LongerThan21(str))
                 {
                     StringBuilder sb = new StringBuilder();
                     for (int i = 0; i < 21; i++)
