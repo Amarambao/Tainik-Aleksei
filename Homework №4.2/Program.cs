@@ -5,7 +5,7 @@ internal class Program
     public delegate string StringMethod1(string str);
     static void Main(string[] args)
     {
-        var RemoveSymbols = (string str) =>
+        StringMethod1 RemoveSymbols = (string str) =>
         {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < str.Length; i++)
@@ -20,7 +20,7 @@ internal class Program
             return sb.ToString();
         };
 
-        var AddSymbols = (string str) =>
+        StringMethod1 AddSymbols = (string str) =>
         {
             StringBuilder sb = new StringBuilder(str);
             string str1 = Console.ReadLine();
@@ -28,7 +28,7 @@ internal class Program
             return sb.ToString();
         };
 
-        var RemoveDuplicateSymbols = (string str) =>
+        StringMethod1 RemoveDuplicateSymbols = (string str) =>
         {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < str.Length - 1; i++)
@@ -45,7 +45,7 @@ internal class Program
             return sb.ToString();
         };
 
-        var StringToUpper = (string str) =>
+        StringMethod1 StringToUpper = (string str) =>
         {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < str.Length; i++)
@@ -63,7 +63,7 @@ internal class Program
             }
             return sb.ToString();
         };
-        var StringReverse = (string str) =>
+        StringMethod1 StringReverse = (string str) =>
         {
             StringBuilder sb = new StringBuilder();
             for (int i = str.Length - 1; i >= 0; i--)
@@ -80,7 +80,6 @@ internal class Program
         string ModifiedString1 = StringReverse(RemoveDuplicateSymbols(StringToUpper(RemoveSymbols(OriginalString))));
         Console.WriteLine(ModifiedString1);
         
-        // как?
         var Instruction1 = (StringMethod1 param1, StringMethod1 param2, StringMethod1 param3, StringMethod1 param4, StringMethod1 param5, string str) =>
         {
             string result1 = param1.Invoke(str);
