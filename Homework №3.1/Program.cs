@@ -10,17 +10,18 @@ namespace Homework__3._1
     {
         static void Main(string[] args)
         {
-            /*string[] S1 = Console.ReadLine().Split(); //ввод массива из консоли
+            /*
+            string[] S1 = Console.ReadLine().Split(); //ввод массива из консоли
             int N, M;
-            N = Convert.ToInt32(s[0]);
-            M = Convert.ToInt32(s[1]);
-            int[,] A = new int[N, N];
+            N = Convert.ToInt32(S1[0]);
+            M = Convert.ToInt32(S1[1]);
+            int[,] A = new int[N, M];
             for (int i = 0; i < N; i++)
             {
-                S1 = Console.ReadLine().Split(); 
+                string[] S2 = Console.ReadLine().Split(); 
                     for (int j = 0; j < M; j++)
                     {
-                        A[i, j] = Convert.ToInt32(s[j]);
+                        A[i, j] = Convert.ToInt32(S2[j]);
                     }
             }
             for (int i = 0; i < N; i++)
@@ -41,14 +42,16 @@ namespace Homework__3._1
                 }
                 Console.WriteLine();
             }
+            
             int[] C1 = new int[] { 1, 2, 3, 4, 5 }; //сравнение массивов
             int[] C2 = new int[] { 1, 2, 3, 4, 5 };
             bool C3 = (C1 == C2) ? true : false;
             Console.WriteLine(C3);
+            
             /*
-            string[] S2 = Console.ReadLine().Split(); // массив строк
-            Console.WriteLine(S2.Length);
-            foreach (string s in S2)
+            string[] S3 = Console.ReadLine().Split(); // массив строк
+            Console.WriteLine(S3.Length);
+            foreach (string s in S3)
             {
                 Console.Write(s + " ");
             }
@@ -57,18 +60,20 @@ namespace Homework__3._1
             int x = int.Parse(Console.ReadLine());
             Console.Write("Напишите на что хотите изменить: "); 
             string y = Console.ReadLine();
-            S2[x] = y;
-            foreach (string s in S2)
+            S3[x] = y;
+            foreach (string s in S3)
             {
                 Console.WriteLine(s + " ");
             }
-            Console.WriteLine(); */
+            Console.WriteLine(); 
+            */
+            
             /*
-            string[] S3 = Console.ReadLine().Split();
-            int[][] Array = new int[int.Parse(S3[0])][];
-            Array[0] = new int[int.Parse(S3[1])];
-            Array[1] = new int[int.Parse(S3[2])];
-            Array[2] = new int[int.Parse(S3[3])];
+            string[] S4 = Console.ReadLine().Split();
+            int[][] Array = new int[int.Parse(S4[0])][];
+            Array[0] = new int[int.Parse(S4[1])];
+            Array[1] = new int[int.Parse(S4[2])];
+            Array[2] = new int[int.Parse(S4[3])];
             */
             int[][] Array = new int[3][];
             Array[0] = new int[2];

@@ -22,20 +22,27 @@ namespace Homework__2._2
         {
             string a = "qwert", b = "asdfg", c = "zxcvb";
             Console.WriteLine($"{a} {b} {c}");
+
             string d = a + b;
             Console.WriteLine(d);
+            
             string e = string.Concat(a, "12345");
             Console.WriteLine(e);
+            
             b = a;
             Console.WriteLine(b);
+            
             Console.WriteLine($"{a.IndexOf('e')} {c.EndsWith("coi")}"); //индекс считается с 0, 2е выражение булевое
-           /* string[] f = Console.ReadLine().Split();
-            foreach (string s in f)
-            {
-                Console.WriteLine(s);
-            } */
+            
+            //string[] f = Console.ReadLine().Split();
+            //foreach (string s in f)
+            //{
+            //    Console.WriteLine(s);
+            //}
+            
             c = c.Insert(5, " ][poi");
             Console.WriteLine(c);
+            
             c = c.Remove(5, 3);
             Console.WriteLine(c);
 
@@ -45,11 +52,11 @@ namespace Homework__2._2
             string NullString = null, EmptyString = "";
             Console.WriteLine(string.IsNullOrEmpty(EmptyString));
             Console.WriteLine(string.IsNullOrEmpty(NullString));
-            if (string.IsNullOrEmpty(EmptyString))
-            {
-                EmptyString = "Not empty anymore";
+            
+            EmptyString = "Not empty anymore";
+            if (!string.IsNullOrEmpty(EmptyString))
                 Console.WriteLine(EmptyString);
-            }
+            
             string[] String = Console.ReadLine().Split();
             StringBuilder StringBuilder1 = new StringBuilder();
             foreach (string str in String) //задача с лекции

@@ -94,7 +94,7 @@ namespace Homework__3._2
             {
                 foreach (int i in List)
                 {
-                    Console.Write($"{i.ToString()} ");
+                    Console.Write($"{i} ");
                 }
                 Console.WriteLine();
             }

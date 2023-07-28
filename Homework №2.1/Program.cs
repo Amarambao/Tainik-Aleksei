@@ -15,6 +15,10 @@ namespace Homework__2._1
             Id = id;
             Name = name;
         }
+        public override string ToString()
+        {
+            return Id + " " + Name;
+        }
     }
     internal class Program
     {
@@ -37,6 +41,12 @@ namespace Homework__2._1
             int? IntNull = null;
             int IntNotNull = IntNull ?? 123;
             Console.WriteLine(IntNotNull + " " + IntNull);
+            string StringNull = null;
+            string StringEmpty = "";
+            string StringNotNull = "qwertyuiop";
+            Console.WriteLine($"Null String = {string.IsNullOrEmpty(StringNull)} \n" +
+                              $"Empty String = {string.IsNullOrEmpty(StringEmpty)} \n" +
+                              $"NotNull String = {string.IsNullOrEmpty(StringNotNull)}");
 
             char Char1 = 'a';
             Console.WriteLine(Char1 + " " + (int)Char1);
@@ -47,20 +57,25 @@ namespace Homework__2._1
             Console.WriteLine(IntByte);
             
             Person A = new Person(123, "Igosha");
+            Console.WriteLine(A.ToString());
 
             string String1 = "STRING";
             Object STR = String1;
             Console.WriteLine(STR);
+            int IntObj = 123456;
+            Object ObjInt = IntObj + 1111111;
+            Console.WriteLine(ObjInt);
 
             string String2 = (string)STR;
             Console.WriteLine(String2);
 
-            var Array = new [] {"Name", "Surname", "Patronymic" };
+            var Array = new [] {"Name", "Surname", "FatherName" };
             foreach (var a in Array)
             {
                 Console.Write(a + " ");
             }
             Console.WriteLine();
+
             var Var = true;
             Console.WriteLine(Var);
             //Var = "STRING"; //не сработает тк Var уже считается переменной булевого типа
