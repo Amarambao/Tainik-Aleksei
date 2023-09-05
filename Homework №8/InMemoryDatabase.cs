@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Homework__8
 {
-    public class InMemoryDatabase
+    public class InMemoryDatabase : IDatabase
     {
         public static List<User> Users { get; }
         static List<Product> Products;

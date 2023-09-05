@@ -1,43 +1,61 @@
 ﻿using Homework__8;
-using System.Diagnostics.Metrics;
 
+IDatabase database = DatabaseCreator.CreateDatabase();
 
-var database = new InMemoryDatabase();
-
-var Users = database.showUsers();
-var Products = database.showProducts();
-var DiscountedProducts = database.showDiscountedProducts();
-var Orders = database.showOrders();
-
-Console.WriteLine("Users");
-foreach (var users in Users)
-{
-    Console.WriteLine("----------------------");
-    Console.WriteLine(users.ToString());
-}
-Console.WriteLine();
-Console.WriteLine("Products");
-foreach (var products in Products)
-{
-    Console.WriteLine("----------------------");
-    Console.WriteLine(products.ToString());
-}
-Console.WriteLine();
-
-//foreach (var orders in Orders)
-//{
-//    Console.WriteLine("----------------------");
-//    Console.WriteLine(orders.ToString());
-//}
 User user = null;
 while (true)
  {
     Console.WriteLine("Enter ID");
     long userID = Convert.ToInt32(Console.ReadLine());
     user = database.showUsers().FirstOrDefault(user => user.Id == userID);
+    
     if (user != null)
     {
         string Input = Console.ReadLine();
+       
+        if (Input == "showUsers")
+        {
+            var Users = database.showUsers();
+            foreach (User users in Users)
+            {
+                Console.WriteLine("----------------------");
+                Console.WriteLine(users.ToString());
+            }
+            Console.WriteLine();
+        }
+        
+        if(Input == "showProducts")
+        {
+            var Products = database.showProducts();
+            foreach (var products in Products)
+            {
+                Console.WriteLine("----------------------");
+                Console.WriteLine(products.ToString());
+            }
+            Console.WriteLine();
+        }
+        
+        if(Input == "showDiscountedProducts")
+        {
+            var DiscountedProducts = database.showDiscountedProducts();
+            foreach(var discountedProducts in DiscountedProducts)
+            {
+                Console.WriteLine("----------------------");
+                Console.WriteLine(discountedProducts.ToString());
+            }
+        }
+     
+        if (Input == "showOrders")
+        {
+            var Orders = database.showOrders();
+            foreach (var orders in Orders)
+            {
+                Console.WriteLine("----------------------");
+                Console.WriteLine(orders.ToString());
+            }
+            Console.WriteLine();
+        }
+       
         if (Input == "addUser")
         {
             Console.Write("Enter your surname: ");
@@ -53,6 +71,7 @@ while (true)
             User newUser = new User(newSurname, newName, newFatherName, newPhoneNumber, newAdress);
             database.addUser(newUser);
         }
+       
         if (Input == "addProduct")
         {
             Console.WriteLine("Enter new product name: ");
@@ -68,6 +87,7 @@ while (true)
                 database.addProduct(newProduct);
             }
         }
+       
         if (Input == "addDiscountedProduct")
         {
             Console.WriteLine("Enter new product name: ");
@@ -86,6 +106,7 @@ while (true)
                 database.addDiscountedProduct(newDiscountedProduct);
             }
         }
+       
         if (Input == "addOrder")
         {
             var newOrder = new Order(user);
@@ -103,6 +124,7 @@ while (true)
             } while (productID != null);
             database.addOrder(newOrder);
         }
+        
         if (Input == "Exit")
             return;
     }
