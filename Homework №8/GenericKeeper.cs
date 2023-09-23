@@ -8,7 +8,7 @@ namespace Homework__8
 {
     public class GenericKeeper<T>
     {
-        static List<T> Items;
+        static List<T> Items = new List<T>();
         public void AddItem(T item)
         {
             Items.Add(item);
