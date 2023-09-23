@@ -37,6 +37,14 @@ namespace Homework__8
         {
             products.Remove(product);
         }
+        public void AddDiscountedProduct(DiscountedProduct discountedProduct)
+        {
+            products.Add(discountedProduct);
+        }
+        public void RemoveDiscountedProduct(DiscountedProduct discountedProduct)
+        {
+            products.Remove(discountedProduct);
+        }
         public override string ToString()
         {
             string Products = "";

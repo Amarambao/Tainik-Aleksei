@@ -9,80 +9,45 @@ namespace Homework__8
 {
     public class InMemoryDatabase : IDatabase
     {
-        public static List<User> Users { get; }
-        static List<Product> Products;
-        static List<DiscountedProduct> DiscountedProducts;
-        static List<Order> Orders;
-        static InMemoryDatabase()
+        public GenericKeeper<User> Users { get; private set; }
+        public GenericKeeper<Product> Products { get; private set; }
+        public GenericKeeper<DiscountedProduct> DiscountedProducts { get; private set; }
+        public GenericKeeper<Order> Orders { get; private set; }
+        public InMemoryDatabase()
         {
-            Users = new List<User>()
-            {
-                new User("Ivanov", "Ivan", "Ivanovich", "+375123456789", "Sovietskaya"),
-                new User("Borisov", "Boris", "Borisovich", "+375290987654", "Lenina"),
-                new User("Petrov", "Peter", "Petrovich", "+375210981256", "Stalina"),
-                new User("Vasil'ev", "Vasilyi", "Vasil'evich", "+375251357924", "Molodeznaya")
-            };
+            Users = new GenericKeeper<User>();
 
-            Products = new List<Product>()
-            {
-                new Product("Bread", "Black", 2.55),
-                new Product("Milk", "Goat", 4.99),
-                new Product("Tea", "Green", 15.49),
-                new Product("Cheese", "Belarus", 7.59)
-            };
+            Users.AddItem(new User("Ivanov", "Ivan", "Ivanovich", "+375123456789", "Sovietskaya"));
+            Users.AddItem(new User("Borisov", "Boris", "Borisovich", "+375290987654", "Lenina"));
+            Users.AddItem(new User("Petrov", "Peter", "Petrovich", "+375210981256", "Stalina"));
+            Users.AddItem(new User("Vasil'ev", "Vasilyi", "Vasil'evich", "+375251357924", "Molodeznaya"));
 
-            DiscountedProducts = new List<DiscountedProduct>()
-            {
-                new DiscountedProduct("Tea", "Discounted green tea", 15.49, 85)
-            };
+            Products = new GenericKeeper<Product>();
 
-            Orders = new List<Order>() { };
+            Products.AddItem(new Product("Bread", "Black", 2.55));
+            Products.AddItem(new Product("Milk", "Goat", 4.99));
+            Products.AddItem(new Product("Tea", "Green", 15.49));
+            Products.AddItem(new Product("Cheese", "Belarus", 7.59));
 
-            foreach (var user in Users)
+            DiscountedProducts = new GenericKeeper<DiscountedProduct>();
+
+            DiscountedProducts.AddItem(new DiscountedProduct("Tea", "Discounted green tea", 15.49, 85));
+
+            Orders = new GenericKeeper<Order>() { };
+
+            foreach (var user in Users.ShowItem())
             {
                 Order order = new Order(user);
-                foreach (var product in Products)
+                foreach (var product in Products.ShowItem())
                 {
                     order.AddProduct(product);
                 }
-                Orders.Add(order); 
+                foreach (var discountedProduct in DiscountedProducts.ShowItem())
+                {
+                    order.AddDiscountedProduct(discountedProduct);
+                }
+                Orders.AddItem(order); 
             }
-        }
-        public void addUser(User newUser)
-        {
-            Users.Add(newUser);
-        }
-        public void addProduct(Product newProduct)
-        {
-            Products.Add(newProduct);
-        }
-        public void addDiscountedProduct(DiscountedProduct newDiscountedProduct)
-        {
-            DiscountedProducts.Add(newDiscountedProduct);
-        }
-        public void addOrder(Order order)
-        {
-            Orders.Add(order);
-        }
-        public List<User> showUsers()
-        {
-            List<User> copyUsers = new List<User>(Users);
-            return copyUsers;
-        }
-        public List<Product> showProducts()
-        {
-            List<Product> copyProducts = new List<Product>(Products);
-            return copyProducts;
-        }
-        public List<DiscountedProduct> showDiscountedProducts()
-        {
-            List<DiscountedProduct> copyDiscountedProducts = new List<DiscountedProduct>(DiscountedProducts);
-            return copyDiscountedProducts;
-        }
-        public List<Order> showOrders()
-        {
-            List<Order> copyOrders = new List<Order>(Orders);
-            return copyOrders;
         }
     }
 }

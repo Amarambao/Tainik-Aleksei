@@ -8,13 +8,9 @@ namespace Homework__8
 {
     internal interface IDatabase
     {
-        public void addUser(User newUser);
-        public void addProduct(Product newProduct);
-        public void addDiscountedProduct(DiscountedProduct newDiscountedProduct);
-        public void addOrder(Order newOrder);
-        public List<User> showUsers();
-        public List<Product> showProducts();
-        public List<DiscountedProduct> showDiscountedProducts();
-        public List<Order> showOrders();
+        public GenericKeeper<User> Users { get; }
+        public GenericKeeper<Product> Products { get; }
+        public GenericKeeper<DiscountedProduct> DiscountedProducts { get; }
+        public GenericKeeper<Order> Orders { get; }
     }
 }
