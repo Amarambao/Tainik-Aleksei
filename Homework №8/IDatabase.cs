@@ -12,5 +12,7 @@ namespace Homework__8
         public GenericKeeper<Product> Products { get; }
         public GenericKeeper<DiscountedProduct> DiscountedProducts { get; }
         public GenericKeeper<Order> Orders { get; }
+
+        public void Save();
     }
 }

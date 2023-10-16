@@ -1,19 +1,54 @@
 ﻿using Homework__8;
+using Newtonsoft.Json;
 
 IDatabase database = DatabaseCreator.CreateDatabase();
 
 var allUsers = database.Users.ShowItem();
 
 User user = null;
+
+void PrintDatabase()
+{
+    Console.WriteLine("Users");
+    var Users = database.Users.ShowItem();
+    foreach (User users in Users)
+    {
+        Console.WriteLine("----------------------");
+        Console.WriteLine(users.ToString());
+    }
+    Console.WriteLine();
+
+    var Products = database.Products.ShowItem();
+    foreach (var products in Products)
+    {
+        Console.WriteLine("----------------------");
+        Console.WriteLine(products.ToString());
+    }
+    Console.WriteLine();
+
+    var DiscountedProducts = database.DiscountedProducts.ShowItem();
+    foreach (var discountedProducts in DiscountedProducts)
+    {
+        Console.WriteLine("----------------------");
+        Console.WriteLine(discountedProducts.ToString());
+    }
+    var Orders = database.Orders.ShowItem();
+    foreach (var orders in Orders)
+    {
+        Console.WriteLine("----------------------");
+        Console.WriteLine(orders.ToString());
+    }
+    Console.WriteLine();
+}
+
 while (true)
- {
+{
     PrintDatabase();
 
-    Console.WriteLine("Enter ID");
-    
     if (user == null)
-    {
-        long userID = Convert.ToInt32(Console.ReadLine());
+    {   
+        Console.WriteLine("Enter ID");
+        long userID = Convert.ToInt64(Console.ReadLine());
         user = database.Users.ShowItem().FirstOrDefault(user => user.Id == userID);
 
         if (user == null)
@@ -151,41 +186,10 @@ while (true)
             }
 
             if (Input == "Exit")
+            {
+                database.Save();
                 return;
+            }
         }
-    }
-
-    void PrintDatabase()
-    {
-        Console.WriteLine("Users");
-        var Users = database.Users.ShowItem();
-        foreach (User users in Users)
-        {
-            Console.WriteLine("----------------------");                
-            Console.WriteLine(users.ToString());
-        }
-        Console.WriteLine();
-
-        var Products = database.Products.ShowItem();
-        foreach (var products in Products)
-        {
-            Console.WriteLine("----------------------");
-            Console.WriteLine(products.ToString());
-        }
-        Console.WriteLine();
-
-        var DiscountedProducts = database.DiscountedProducts.ShowItem();
-        foreach (var discountedProducts in DiscountedProducts)
-        {
-            Console.WriteLine("----------------------");
-            Console.WriteLine(discountedProducts.ToString());
-        }
-        var Orders = database.Orders.ShowItem();
-        foreach (var orders in Orders)
-        {
-            Console.WriteLine("----------------------");
-            Console.WriteLine(orders.ToString());
-        }
-            Console.WriteLine();
     }
 }

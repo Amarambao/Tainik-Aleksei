@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
@@ -47,6 +48,35 @@ namespace Homework__8
                     order.AddDiscountedProduct(discountedProduct);
                 }
                 Orders.AddItem(order); 
+            }
+        }
+        public void Save()
+        {
+            string srUsers = JsonConvert.SerializeObject(Users.ShowItem());
+            using (FileStream fs = new FileStream("Users.txt", FileMode.OpenOrCreate))
+            {
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    sw.WriteLine(srUsers);
+                }
+            }
+
+            string srProducts = JsonConvert.SerializeObject(Products.ShowItem());
+            using (FileStream fs = new FileStream("Products.txt", FileMode.OpenOrCreate))
+            {
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    sw.WriteLine(srProducts);
+                }
+            }
+
+            string srOrders = JsonConvert.SerializeObject(Orders.ShowItem());
+            using (FileStream fs = new FileStream("Orders.txt", FileMode.OpenOrCreate))
+            {
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    sw.WriteLine(srOrders);
+                }
             }
         }
     }
