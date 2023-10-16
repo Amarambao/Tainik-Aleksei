@@ -41,10 +41,10 @@ void PrintDatabase()
     Console.WriteLine();
 }
 
+PrintDatabase();
+
 while (true)
 {
-    PrintDatabase();
-
     if (user == null)
     {   
         Console.WriteLine("Enter ID");
@@ -71,6 +71,7 @@ while (true)
         }
         else
         {
+            Console.WriteLine("Enter command");
             string Input = Console.ReadLine();
 
             if (Input == "showUsers")
@@ -185,7 +186,7 @@ while (true)
                 database.Orders.AddItem(newOrder);
             }
 
-            if (Input == "Exit")
+            if (Input == "exit")
             {
                 database.Save();
                 return;
