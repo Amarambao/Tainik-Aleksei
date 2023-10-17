@@ -12,7 +12,7 @@ namespace Homework__8
         public long Id 
         {
             get;
-            private set;
+            set;
         }
         private long TimeId()
         {
