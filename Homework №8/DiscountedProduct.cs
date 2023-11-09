@@ -1,27 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Homework__8
+﻿namespace Homework__8
 {
     public class DiscountedProduct : Product
     {
         public int currentDiscount;
-        public int CurrentDuscount
+        public int CurrentDiscount
         {
             get => currentDiscount;
             set => currentDiscount = value;
         }
         public override double ProductPrice
         {
-            get => base.ProductPrice * CurrentDuscount / 100;
+            get => base.ProductPrice * CurrentDiscount / 100;
         }
         public DiscountedProduct(string ProductName, string ProductDescription, double ProductPrice, int CurrentDuscount)
             : base(ProductName, ProductDescription, ProductPrice)
         {
-            this.CurrentDuscount = CurrentDuscount;
+            this.CurrentDiscount = CurrentDuscount;
         }
     }
 }

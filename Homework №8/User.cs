@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Homework__8
+﻿namespace Homework__8
 {
     public class User : BaseModel
     {
@@ -65,7 +59,7 @@ namespace Homework__8
                 $"Surname - {Surname}\n" +
                 $"Name - {Name}\n" +
                 $"FatherName - {FatherName}\n" +
-                $"PhoneNumber - {PhoneNumber}\n" +
+                $"PhoneNumber - {Convert.ToInt64(PhoneNumber):+###(##)###-##-##}\n" +
                 $"CustomerAdress - {CustomerAdress}";
         }
         public User(string Surname, string Name, string FatherName, string PhoneNumber, string CustomerAdress)

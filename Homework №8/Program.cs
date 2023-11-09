@@ -1,5 +1,4 @@
 ﻿using Homework__8;
-using Newtonsoft.Json;
 
 IDatabase database = DatabaseCreator.CreateDatabase();
 
@@ -10,35 +9,16 @@ User user = null;
 void PrintDatabase()
 {
     Console.WriteLine("Users");
-    var Users = database.Users.ShowItem();
-    foreach (User users in Users)
-    {
-        Console.WriteLine("----------------------");
-        Console.WriteLine(users.ToString());
-    }
-    Console.WriteLine();
+    Console.WriteLine(database.Users.PrintItems());
 
-    var Products = database.Products.ShowItem();
-    foreach (var products in Products)
-    {
-        Console.WriteLine("----------------------");
-        Console.WriteLine(products.ToString());
-    }
-    Console.WriteLine();
+    Console.WriteLine("Products");
+    Console.WriteLine(database.Products.PrintItems());
 
-    var DiscountedProducts = database.DiscountedProducts.ShowItem();
-    foreach (var discountedProducts in DiscountedProducts)
-    {
-        Console.WriteLine("----------------------");
-        Console.WriteLine(discountedProducts.ToString());
-    }
-    var Orders = database.Orders.ShowItem();
-    foreach (var orders in Orders)
-    {
-        Console.WriteLine("----------------------");
-        Console.WriteLine(orders.ToString());
-    }
-    Console.WriteLine();
+    Console.WriteLine("Discounted Products");
+    Console.WriteLine(database.DiscountedProducts.PrintItems());
+
+    Console.WriteLine("Orders");
+    Console.WriteLine(database.Orders.PrintItems());
 }
 
 PrintDatabase();
@@ -46,151 +26,158 @@ PrintDatabase();
 while (true)
 {
     if (user == null)
-    {   
+    {
         Console.WriteLine("Enter ID");
-        long userID = Convert.ToInt64(Console.ReadLine());
+        var userID = Convert.ToInt64(Console.ReadLine());
         user = database.Users.ShowItem().FirstOrDefault(user => user.Id == userID);
 
         if (user == null)
         {
             Console.Write("Enter your surname: ");
-            string newSurname = Console.ReadLine();
-            Console.Write("Enter your name: ");
-            string newName = Console.ReadLine();
-            Console.Write("Enter your fathername: ");
-            string newFatherName = Console.ReadLine();
-            Console.Write("Enter your phone number: ************");
-            string newPhoneNumber = Console.ReadLine();
-            Console.Write("Enter your adress: ");
-            string newAdress = Console.ReadLine();
-            User newUser = new User(newSurname, newName, newFatherName, newPhoneNumber, newAdress);
+            var newSurname = Console.ReadLine();
 
-            Console.WriteLine($"Your ID = {user.Id}. Welcome!");
+            Console.Write("Enter your name: ");
+            var newName = Console.ReadLine();
+
+            Console.Write("Enter your fathername: ");
+            var newFatherName = Console.ReadLine();
+
+            Console.Write("Enter your phone number: 375123456789");
+            var newPhoneNumber = Console.ReadLine();
+
+            Console.Write("Enter your adress: ");
+            var newAdress = Console.ReadLine();
+
+            var newUser = new User(newSurname!, newName!, newFatherName!, newPhoneNumber!, newAdress!);
 
             database.Users.AddItem(newUser);
+
+            Console.WriteLine($"Your ID = {newUser.Id}. Welcome!");
+
         }
         else while (true)
-        { 
-            Console.WriteLine("Enter command");
-            string Input = Console.ReadLine();
+            {
+                Console.WriteLine("Enter command");
+                var Input = Console.ReadLine();
 
-            if (Input == "showUsers")
+                switch (Input)
                 {
-                    var Users = database.Users.ShowItem();
-                    foreach (User users in Users)
-                    {
-                        Console.WriteLine("----------------------");
-                        Console.WriteLine(users.ToString());
-                    }
-                    Console.WriteLine();
-                }
+                    case "showUsers":
+                        Console.WriteLine(database.Users.PrintItems());
+                        break;
 
-            if (Input == "showProducts")
-                {
-                    var Products = database.Products.ShowItem();
-                    foreach (var products in Products)
-                    {
-                        Console.WriteLine("----------------------");
-                        Console.WriteLine(products.ToString());
-                    }
-                    Console.WriteLine();
-                }
+                    case "showProducts":
+                        Console.WriteLine(database.Products.PrintItems());
+                        break;
 
-            if (Input == "showDiscountedProducts")
-                {
-                    var DiscountedProducts = database.DiscountedProducts.ShowItem();
-                    foreach (var discountedProducts in DiscountedProducts)
-                    {
-                        Console.WriteLine("----------------------");
-                        Console.WriteLine(discountedProducts.ToString());
-                    }
-                }
+                    case "showDiscountedProducts":
+                        Console.WriteLine(database.DiscountedProducts.PrintItems());
+                        break;
 
-            if (Input == "showOrders")
-                {
-                    var Orders = database.Orders.ShowItem();
-                    foreach (var orders in Orders)
-                    {
-                        Console.WriteLine("----------------------");
-                        Console.WriteLine(orders.ToString());
-                    }
-                    Console.WriteLine();
-                }
+                    case "showOrders":
+                        Console.WriteLine(database.Orders.PrintItems());
+                        break;
 
-            if (Input == "addUser")
-                {
-                    Console.Write("Enter your surname: ");
-                    string newSurname = Console.ReadLine();
-                    Console.Write("Enter your name: ");
-                    string newName = Console.ReadLine();
-                    Console.Write("Enter your fathername: ");
-                    string newFatherName = Console.ReadLine();
-                    Console.Write("Enter your phone number: ************");
-                    string newPhoneNumber = Console.ReadLine();
-                    Console.Write("Enter your adress: ");
-                    string newAdress = Console.ReadLine();
-                    User newUser = new User(newSurname, newName, newFatherName, newPhoneNumber, newAdress);
-                    database.Users.AddItem(newUser);
-                }
+                    case "addUser":
+                        Console.Write("Enter your surname: ");
+                        var newSurname = Console.ReadLine();
 
-            if (Input == "addProduct")
-                {
-                    Console.WriteLine("Enter new product name: ");
-                    string newProductName = Console.ReadLine();
-                    Console.WriteLine("Enter new product description: ");
-                    string newProductDescription = Console.ReadLine();
-                    Console.Write("Enter new product price = ");
-                    double newProductPrice;
-                    bool result = double.TryParse(Console.ReadLine(), out newProductPrice);
-                    if (result)
-                    {
-                        Product newProduct = new Product(newProductName, newProductDescription, newProductPrice);
-                        database.Products.AddItem(newProduct);
-                    }
-                }
+                        Console.Write("Enter your name: ");
+                        var newName = Console.ReadLine();
 
-            if (Input == "addDiscountedProduct")
-                {
-                    Console.WriteLine("Enter new product name: ");
-                    string newProductName = Console.ReadLine();
-                    Console.WriteLine("Enter new product description: ");
-                    string newProductDescription = Console.ReadLine();
-                    Console.Write("Enter new product price = ");
-                    double newProductPrice;
-                    bool result1 = double.TryParse(Console.ReadLine(), out newProductPrice);
-                    Console.WriteLine("Enter current discount = ");
-                    int CurrentDiscount;
-                    bool result2 = int.TryParse(Console.ReadLine(), out CurrentDiscount);
-                    if (result1 && result2)
-                    {
-                        DiscountedProduct newDiscountedProduct = new DiscountedProduct(newProductName, newProductDescription, newProductPrice, CurrentDiscount);
-                        database.DiscountedProducts.AddItem(newDiscountedProduct);
-                    }
-                }
+                        Console.Write("Enter your fathername: ");
+                        var newFatherName = Console.ReadLine();
 
-            if (Input == "addOrder")
-                {
-                    var newOrder = new Order(user);
-                    Console.WriteLine("Enter product ID to choose products to order");
-                    long productID;
-                    do
-                    {
-                        productID = Convert.ToInt32(Console.ReadLine());
-                        Product product = database.Products.ShowItem().FirstOrDefault(user => user.Id == productID);
-                        if (product != null)
+                        Console.Write("Enter your phone number: 375123456789");
+                        var newPhoneNumber = Console.ReadLine();
+
+                        Console.Write("Enter your adress: ");
+                        var newAdress = Console.ReadLine();
+
+                        var newUser = new User(newSurname!, newName!, newFatherName!, newPhoneNumber!, newAdress!);
+                        database.Users.AddItem(newUser);
+
+                        database.SaveUsers();
+                        break;
+
+                    case "addProduct":
+                        Console.WriteLine("Enter new product name: ");
+                        var newProductName = Console.ReadLine();
+
+                        Console.WriteLine("Enter new product description: ");
+                        var newProductDescription = Console.ReadLine();
+
+                        Console.Write("Enter new product price = ");
+                        var result = double.TryParse(Console.ReadLine(), out double newProductPrice);
+
+                        if (result)
                         {
-                            newOrder.AddProduct(product);
+                            var newProduct = new Product(newProductName!, newProductDescription!, newProductPrice!);
+                            database.Products.AddItem(newProduct);
                         }
-                        Console.WriteLine("If u want to order more products enter product ID");
-                    } while (productID != null);
-                    database.Orders.AddItem(newOrder);
-                }
 
-            if (Input == "exit")
-                {
-                    database.Save();
-                    return;
-                }
-        }
+                        database.SaveProducts();
+                        break;
+
+                    case "addDiscountedProduct":
+                        Console.WriteLine("Enter new product name: ");
+                        var newDiscProductName = Console.ReadLine();
+
+                        Console.WriteLine("Enter new product description: ");
+                        var newDiscProductDescription = Console.ReadLine();
+
+                        Console.Write("Enter new product price = ");
+                        var result1 = double.TryParse(Console.ReadLine(), out double newDiscProductPrice);
+
+                        Console.WriteLine("Enter current discount = ");
+                        int CurrentDiscount;
+
+                        var result2 = int.TryParse(Console.ReadLine(), out CurrentDiscount);
+                        if (result1 && result2)
+                        {
+                            var newDiscountedProduct = new DiscountedProduct(newDiscProductName!, newDiscProductDescription!, newDiscProductPrice!, CurrentDiscount!);
+                            database.DiscountedProducts.AddItem(newDiscountedProduct);
+                        }
+
+                        database.SaveDiscountedProducts();
+                        break;
+
+                    case "addOrder":
+                        var newOrder = new Order(user);
+
+                        Console.WriteLine("Enter product ID to choose products to order");
+                        long productID;
+
+                        do
+                        {
+                            productID = Convert.ToInt64(Console.ReadLine());
+                            var product = database.Products.ShowItem().FirstOrDefault(user => user.Id == productID);
+
+                            if (product != null)
+                            {
+                                newOrder.AddProduct(product);
+                            }
+
+                            Console.WriteLine("If u want to order more products enter product ID");
+                        } while (productID != null);
+
+                        database.Orders.AddItem(newOrder);
+
+                        database.SaveOrders();
+                        break;
+
+                    case "exit":
+                        //на всякий оставил
+                        database.SaveUsers();
+                        database.SaveOrders();
+                        database.SaveProducts();
+                        database.SaveDiscountedProducts();
+                        break;
+
+                    default:
+                        Console.WriteLine("Wrong input try again");
+                        break;
+                };
+            }
     }
 }

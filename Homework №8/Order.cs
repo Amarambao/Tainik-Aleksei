@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Homework__8
+﻿namespace Homework__8
 {
     public class Order : BaseModel
     {
-        const double convertionUSD = 3.09;
+        const double CONVERSIONUSD = 3.09;
         readonly User user;
         readonly List<Product> products;
 
@@ -47,15 +41,15 @@ namespace Homework__8
         }
         public override string ToString()
         {
-            string Products = "";
-            foreach (Product prod in products)
+            var Products = "";
+            foreach (var prod in products)
             {
                 Products += prod.ToString();
                 Products += "\n----------\n";
             }
-            return $"This order ID = {Id.ToString()}\n" +
-                $"Total price of this order = {TotalPrice()}\n" +
-                $"This order was made by this user --\n{user.ToString()}\n" +
+            return $"This order ID = {Id}\n" +
+                $"Total price of this order = {TotalPrice():#####,##}\n" +
+                $"This order was made by this user --\n{user}\n" +
                 $"\nThis order have this products --\n{Products}";
         }
         public Order(User User)

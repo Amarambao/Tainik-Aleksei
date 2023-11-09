@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Homework__8
+﻿namespace Homework__8
 {
     internal interface IDatabase
     {
@@ -13,6 +7,10 @@ namespace Homework__8
         public GenericKeeper<DiscountedProduct> DiscountedProducts { get; }
         public GenericKeeper<Order> Orders { get; }
 
-        public void Save();
+        public void SaveUsers();
+        public void SaveProducts();
+        public void SaveDiscountedProducts();
+        public void SaveOrders();
+
     }
 }

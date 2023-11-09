@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Homework__8
+﻿namespace Homework__8
 {
     internal static class DatabaseCreator
     {
@@ -12,6 +6,6 @@ namespace Homework__8
         {
             IDatabase database = new InMemoryDatabase();
             return database;
-        } 
+        }
     }
 }

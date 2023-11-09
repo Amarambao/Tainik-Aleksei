@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Homework__8
+﻿namespace Homework__8
 {
     public abstract class BaseModel
     {
         protected static long id;
-        public long Id 
+        public long Id
         {
             get;
             set;

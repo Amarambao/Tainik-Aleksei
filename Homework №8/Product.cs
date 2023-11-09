@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Homework__8
+﻿namespace Homework__8
 {
     public class Product : BaseModel
     {
@@ -44,7 +38,7 @@ namespace Homework__8
             return $"Product ID = {Id.ToString()}\n" +
                 $"ProductName - {ProductName}\n" +
                 $"ProductDescription - {ProductDescription}\n" +
-                $"ProductPrice = {ProductPrice}";
+                $"ProductPrice = {ProductPrice:####,##}";
         }
         //public override bool Equals(object? prod)
         //{
@@ -57,7 +51,7 @@ namespace Homework__8
         //}
         public override bool Equals(object? prod)
         {
-            Product Prod = (Product)prod;
+            var Prod = (Product)prod;
             return this.GetHashCode() == prod.GetHashCode();
         }
         public override int GetHashCode()

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Homework__8
+﻿namespace Homework__8
 {
     public class GenericKeeper<T>
     {
@@ -17,6 +11,17 @@ namespace Homework__8
         {
             List<T> items = new List<T>(Items);
             return items;
+        }
+        public string PrintItems()
+        {
+            string str = "";
+            foreach (var _item in Items)
+            {
+                str += "----------------------\n";
+                str += _item.ToString();
+                str += "\n";
+            }
+            return str;
         }
     }
 }

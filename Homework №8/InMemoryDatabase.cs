@@ -1,10 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Homework__8
 {
@@ -19,9 +13,12 @@ namespace Homework__8
             Users = new GenericKeeper<User>();
             Products = new GenericKeeper<Product>();
             DiscountedProducts = new GenericKeeper<DiscountedProduct>();
-            Orders = new GenericKeeper<Order>() { };
+            Orders = new GenericKeeper<Order>();
 
-            Load();
+            LoadUsers();
+            LoadProducts();
+            LoadDiscountedProducts();
+            LoadOrders();
 
             //Users.AddItem(new User("Ivanov", "Ivan", "Ivanovich", "375123456789", "Sovietskaya"));
             //Users.AddItem(new User("Borisov", "Boris", "Borisovich", "375290987654", "Lenina"));
@@ -49,71 +46,86 @@ namespace Homework__8
             //    Orders.AddItem(order);
             //}
         }
-        public void Save()
+        public void SaveUsers()
         {
-            string srUsers = JsonConvert.SerializeObject(Users.ShowItem());
-            using (FileStream fs = new FileStream("Users.txt", FileMode.Open))
-            {
-                using (StreamWriter sw = new StreamWriter(fs))
-                {
-                    sw.WriteLine(srUsers);
-                }
-            }
+            var srUsers = JsonConvert.SerializeObject(Users.ShowItem());
 
-            string srProducts = JsonConvert.SerializeObject(Products.ShowItem());
-            using (FileStream fs = new FileStream("Products.txt", FileMode.Open))
-            {
-                using (StreamWriter sw = new StreamWriter(fs))
-                {
-                    sw.WriteLine(srProducts);
-                }
-            }
+            using FileStream fs = new FileStream("Users.txt", FileMode.Truncate);
+            using StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine(srUsers);
+        }
+        public void SaveProducts()
+        {
+            var srProducts = JsonConvert.SerializeObject(Products.ShowItem());
 
-            string srOrders = JsonConvert.SerializeObject(Orders.ShowItem());
-            using (FileStream fs = new FileStream("Orders.txt", FileMode.Open))
+            using FileStream fs = new FileStream("Products.txt", FileMode.Truncate);
+            using StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine(srProducts);
+        }
+        public void SaveDiscountedProducts()
+        {
+            var srDiscountedProducts = JsonConvert.SerializeObject(DiscountedProducts.ShowItem());
+
+            using FileStream fs = new FileStream("DiscountedProducts.txt", FileMode.Truncate);
+            using StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine(srDiscountedProducts);
+        }
+        public void SaveOrders()
+        {
+            var srOrders = JsonConvert.SerializeObject(Orders.ShowItem());
+
+            using FileStream fs = new FileStream("Orders.txt", FileMode.Truncate);
+            using StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine(srOrders);
+        }
+
+        public void LoadUsers()
+        {
+            using FileStream fs = new FileStream("Users.txt", FileMode.OpenOrCreate);
+            using (StreamReader sr = new StreamReader(fs))
             {
-                using (StreamWriter sw = new StreamWriter(fs))
+                var users = JsonConvert.DeserializeObject<List<User>>(sr.ReadToEnd());
+                foreach (var user in users)
                 {
-                    sw.WriteLine(srOrders);
+                    Users.AddItem(user);
                 }
             }
         }
-        public void Load()
+        public void LoadProducts()
         {
-            using (FileStream fs = new FileStream("Users.txt", FileMode.Truncate))
+            using FileStream fs = new FileStream("Products.txt", FileMode.OpenOrCreate);
+            using (StreamReader sr = new StreamReader(fs))
             {
-                using (StreamReader sr = new StreamReader(fs))
+                var products = JsonConvert.DeserializeObject<List<Product>>(sr.ReadToEnd());
+                foreach (var product in products)
                 {
-                    string usersData = sr.ReadToEnd();
-                    List<User> users = JsonConvert.DeserializeObject<List<User>>(usersData);
-                    foreach(User user in users)
-                    {
-                        Users.AddItem(user);
-                    }
+                    Products.AddItem(product);
                 }
             }
-            using (FileStream fs = new FileStream("Products.txt", FileMode.Truncate))
+        }
+        public void LoadDiscountedProducts()
+        {
+            using FileStream fs = new FileStream("DiscountedProducts.txt", FileMode.OpenOrCreate);
+            using (StreamReader sr = new StreamReader(fs))
             {
-                using (StreamReader sr = new StreamReader(fs))
+                var discountedProducts = JsonConvert.DeserializeObject<List<DiscountedProduct>>(sr.ReadToEnd());
+
+                foreach (DiscountedProduct discountedProduct in discountedProducts)
                 {
-                    string productsData = sr.ReadToEnd();
-                    List<Product> products = JsonConvert.DeserializeObject<List<Product>>(productsData);
-                    foreach (Product product in products)
-                    {
-                        Products.AddItem(product);
-                    }
+                    DiscountedProducts.AddItem(discountedProduct);
                 }
             }
-            using (FileStream fs = new FileStream("Orders.txt", FileMode.Truncate))
+        }
+        public void LoadOrders()
+        {
+            using FileStream fs = new FileStream("Orders.txt", FileMode.OpenOrCreate);
+            using (StreamReader sr = new StreamReader(fs))
             {
-                using (StreamReader sr = new StreamReader(fs))
+                var orders = JsonConvert.DeserializeObject<List<Order>>(sr.ReadToEnd());
+
+                foreach (Order order in orders)
                 {
-                    string ordersData = sr.ReadToEnd();
-                    List<Order> orders = JsonConvert.DeserializeObject<List<Order>>(ordersData);
-                    foreach (Order order in orders)
-                    {
-                        Orders.AddItem(order);
-                    }
+                    Orders.AddItem(order);
                 }
             }
         }
