@@ -49,8 +49,8 @@
             }
             return $"This order ID = {Id}\n" +
                 $"Total price of this order = {TotalPrice():#####,##}\n" +
-                $"This order was made by this user --\n{user}\n" +
-                $"\nThis order have this products --\n{Products}";
+                $"This order was made by this user --->\n{user}\n" +
+                $"\nThis order have this products --->\n{Products}";
         }
         public Order(User User)
         {

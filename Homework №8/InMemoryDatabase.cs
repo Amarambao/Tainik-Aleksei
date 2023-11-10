@@ -15,10 +15,18 @@ namespace Homework__8
             DiscountedProducts = new GenericKeeper<DiscountedProduct>();
             Orders = new GenericKeeper<Order>();
 
-            LoadUsers();
-            LoadProducts();
-            LoadDiscountedProducts();
-            LoadOrders();
+            Task taskLoadUsers = Task.Run(() => LoadUsers());
+            Task taskLoadProducts = Task.Run(() => LoadProducts());
+            Task taskLoadDiscountedProducts = Task.Run(() => LoadDiscountedProducts());
+            Task taskLoadOrders = Task.Run(() => LoadOrders());
+
+            taskLoadUsers.Wait();
+            taskLoadProducts.Wait();
+            taskLoadDiscountedProducts.Wait();
+            taskLoadOrders.Wait();
+
+            Task taskPrintDatabase = Task.Run(() => PrintDatabaseAsync());
+            taskPrintDatabase.Wait();
 
             //Users.AddItem(new User("Ivanov", "Ivan", "Ivanovich", "375123456789", "Sovietskaya"));
             //Users.AddItem(new User("Borisov", "Boris", "Borisovich", "375290987654", "Lenina"));
@@ -46,6 +54,33 @@ namespace Homework__8
             //    Orders.AddItem(order);
             //}
         }
+
+        public async Task PrintDatabaseAsync()
+        {
+            await Task.Run(() => PrintUsers());
+            await Task.Run(() => PrintProducts());
+            await Task.Run(() => PrintDiscProducts());
+            await Task.Run(() => PrintOrders());
+        }
+
+        public async void PrintUsers()
+        {
+            await Task.Run(() => Console.WriteLine($"Users \n{Users.PrintItems()}"));
+        }
+        public async void PrintProducts()
+        {
+            await Task.Run(() => Console.WriteLine($"Products \n{Products.PrintItems()}"));
+        }
+        public async void PrintDiscProducts()
+        {
+            await Task.Run(() => Console.WriteLine($"Discounted Products \n{DiscountedProducts.PrintItems()}"));
+
+        }
+        public async void PrintOrders()
+        {
+            await Task.Run(() => Console.WriteLine($"Orders \n{Orders.PrintItems()}"));
+        }
+
         public void SaveUsers()
         {
             var srUsers = JsonConvert.SerializeObject(Users.ShowItem());
@@ -85,11 +120,12 @@ namespace Homework__8
             using (StreamReader sr = new StreamReader(fs))
             {
                 var users = JsonConvert.DeserializeObject<List<User>>(sr.ReadToEnd());
-                foreach (var user in users)
+                foreach (var user in users!)
                 {
                     Users.AddItem(user);
                 }
             }
+            //Console.WriteLine("LoadedUsers");
         }
         public void LoadProducts()
         {
@@ -97,11 +133,12 @@ namespace Homework__8
             using (StreamReader sr = new StreamReader(fs))
             {
                 var products = JsonConvert.DeserializeObject<List<Product>>(sr.ReadToEnd());
-                foreach (var product in products)
+                foreach (var product in products!)
                 {
                     Products.AddItem(product);
                 }
             }
+            //Console.WriteLine("LoadedProd");
         }
         public void LoadDiscountedProducts()
         {
@@ -110,11 +147,12 @@ namespace Homework__8
             {
                 var discountedProducts = JsonConvert.DeserializeObject<List<DiscountedProduct>>(sr.ReadToEnd());
 
-                foreach (DiscountedProduct discountedProduct in discountedProducts)
+                foreach (DiscountedProduct discountedProduct in discountedProducts!)
                 {
                     DiscountedProducts.AddItem(discountedProduct);
                 }
             }
+            //Console.WriteLine("LoadedDiscProd");
         }
         public void LoadOrders()
         {
@@ -123,11 +161,12 @@ namespace Homework__8
             {
                 var orders = JsonConvert.DeserializeObject<List<Order>>(sr.ReadToEnd());
 
-                foreach (Order order in orders)
+                foreach (Order order in orders!)
                 {
                     Orders.AddItem(order);
                 }
             }
+            //Console.WriteLine("LoadedOrders");
         }
     }
 }

@@ -7,6 +7,7 @@
         public GenericKeeper<DiscountedProduct> DiscountedProducts { get; }
         public GenericKeeper<Order> Orders { get; }
 
+        public Task PrintDatabaseAsync();
         public void SaveUsers();
         public void SaveProducts();
         public void SaveDiscountedProducts();
