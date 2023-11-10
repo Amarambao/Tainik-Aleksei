@@ -63,22 +63,23 @@ namespace Homework__8
             await Task.Run(() => PrintOrders());
         }
 
+        //это бессмысленно 
         public async void PrintUsers()
         {
-            await Task.Run(() => Console.WriteLine($"Users \n{Users.PrintItems()}"));
+            await Task.Run(() => Console.WriteLine($"USERS \n{Users.PrintItems()}"));
         }
         public async void PrintProducts()
         {
-            await Task.Run(() => Console.WriteLine($"Products \n{Products.PrintItems()}"));
+            await Task.Run(() => Console.WriteLine($"PRODUCTS \n{Products.PrintItems()}"));
         }
         public async void PrintDiscProducts()
         {
-            await Task.Run(() => Console.WriteLine($"Discounted Products \n{DiscountedProducts.PrintItems()}"));
+            await Task.Run(() => Console.WriteLine($"DISCOUNTED PRODUCTS \n{DiscountedProducts.PrintItems()}"));
 
         }
         public async void PrintOrders()
         {
-            await Task.Run(() => Console.WriteLine($"Orders \n{Orders.PrintItems()}"));
+            await Task.Run(() => Console.WriteLine($"ORDERS \n{Orders.PrintItems()}"));
         }
 
         public void SaveUsers()
@@ -125,7 +126,7 @@ namespace Homework__8
                     Users.AddItem(user);
                 }
             }
-            //Console.WriteLine("LoadedUsers");
+            //Console.WriteLine("UsersLoaded");
         }
         public void LoadProducts()
         {
@@ -138,7 +139,7 @@ namespace Homework__8
                     Products.AddItem(product);
                 }
             }
-            //Console.WriteLine("LoadedProd");
+            //Console.WriteLine("ProdLoaded");
         }
         public void LoadDiscountedProducts()
         {
@@ -152,7 +153,7 @@ namespace Homework__8
                     DiscountedProducts.AddItem(discountedProduct);
                 }
             }
-            //Console.WriteLine("LoadedDiscProd");
+            //Console.WriteLine("DiscProdLoaded");
         }
         public void LoadOrders()
         {
@@ -166,7 +167,7 @@ namespace Homework__8
                     Orders.AddItem(order);
                 }
             }
-            //Console.WriteLine("LoadedOrders");
+            //Console.WriteLine("OrdersLoaded");
         }
     }
 }

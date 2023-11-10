@@ -13,6 +13,7 @@ class Program
         {
             if (user == null)
             {
+                //await Task.Run(() => Console.WriteLine("Enter ID"));
                 Console.WriteLine("Enter ID");
                 var userID = Convert.ToInt64(Console.ReadLine());
                 user = database.Users.ShowItem().FirstOrDefault(user => user.Id == userID);
